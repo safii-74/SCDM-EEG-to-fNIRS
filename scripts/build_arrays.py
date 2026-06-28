@@ -24,10 +24,11 @@ from src.data.montage import load_eeg_xy, load_nirs_xy, build_montage_coords
 from src.data.dataset import SCDMDataset
 
 
-DATASET_ROOT = Path(r"E:\SCDM — EEG-to-fNIRS Cross-Modal Generation\DATASET")
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent
+DATASET_ROOT = _PROJECT_ROOT / "DATASET"
 EEG_ROOT = DATASET_ROOT
 NIRS_ROOT = DATASET_ROOT / "NIRS_01-29"
-OUTPUT_DIR = Path(r"E:\SCDM — EEG-to-fNIRS Cross-Modal Generation\scdm\data\preprocessed")
+OUTPUT_DIR = _PROJECT_ROOT / "data" / "preprocessed"
 
 
 def main():

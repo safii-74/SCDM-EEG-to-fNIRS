@@ -17,7 +17,7 @@ import seaborn as sns
 from .metrics import signal_similarity
 
 
-FIGURES_DIR = Path(r"E:\SCDM — EEG-to-fNIRS Cross-Modal Generation\scdm\figures")
+FIGURES_DIR = Path(__file__).resolve().parent.parent.parent / "figures"
 
 
 def plot_hemodynamic_curves(real_hbr, real_hbo, synth_hbr, synth_hbo,

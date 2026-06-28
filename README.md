@@ -19,6 +19,7 @@
   <a href="#-our-innovations">Innovations</a> •
   <a href="#-key-results">Results</a> •
   <a href="#-getting-started">Getting Started</a> •
+  <a href="#-interactive-notebook">Notebook</a> •
   <a href="#-citation">Citation</a>
 </p>
 
@@ -198,12 +199,31 @@ These planes are encoded by a **PlanesEncoder** (small Conv2d network) and added
 
 ---
 
+## Interactive Notebook
+
+Explore the full pipeline interactively in our **[SCDM Demo Notebook](notebooks/SCDM_Demo.ipynb)**:
+
+- Biological background on neurovascular coupling
+- HRF convolution pipeline with visualizations
+- Correlation planes construction demo
+- Model architecture inspection and forward pass verification
+- Diffusion process walkthrough (noise schedules, forward/reverse)
+- Training loop demonstration
+- DDIM sampling and signal generation
+- Classification results analysis
+
+The notebook runs with synthetic data — no dataset download required for exploration.
+
+---
+
 ## Project Structure
 
 ```
 scdm/
 ├── configs/
 │   └── config.yaml                 # All training hyperparameters
+├── notebooks/
+│   └── SCDM_Demo.ipynb             # Interactive walkthrough (run without data)
 ├── src/
 │   ├── data/
 │   │   ├── preprocessing.py        # EEG/fNIRS signal preprocessing pipelines
@@ -232,6 +252,8 @@ scdm/
 │   └── run_ablations.py            # Full ablation experiment runner (6 variants)
 ├── tests/
 │   └── test_shapes.py              # Shape & integration tests
+├── notebooks/
+│   └── SCDM_Demo.ipynb             # ★ Interactive pipeline walkthrough
 ├── figures/                        # Generated evaluation plots
 ├── assets/                         # Architecture diagrams & result figures
 ├── requirements.txt
