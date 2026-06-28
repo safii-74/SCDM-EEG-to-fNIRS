@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.claude/
+
+# Data (regenerate with: python scripts/build_arrays.py)
+data/preprocessed/*.npy
+data/preprocessed/*.npz
+data/preprocessed/*.pt
+DATASET/
+
+# Model checkpoints (train with: python scripts/train.py)
+*.pt
+*.pth
+checkpoints/
+
+# Generated outputs
+synthetic_fnirs.npy
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Thesis documents
+*.docx
+*.pdf

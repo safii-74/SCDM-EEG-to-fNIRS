@@ -1,0 +1,40 @@
+# SCDM configuration — Enhanced SimpleDenoiser with planes conditioning
+data:
+  eeg_path: data/preprocessed/eeg.npy        # (1740, 30, 4000)
+  eeg_hrf_path: data/preprocessed/eeg_hrf.npy  # (1740, 30, 256) auto-computed
+  hbr_path: data/preprocessed/hbr.npy        # (1740, 36, 256)
+  hbo_path: data/preprocessed/hbo.npy        # (1740, 36, 256)
+  labels_path: data/preprocessed/labels.npy  # (1740,)  0=LMI, 1=RMI
+  planes_cache: data/preprocessed/planes_hbr.pt
+  montage_path: data/preprocessed/montage.npz
+  modality: hbr                              # train on hbr or hbo
+
+training:
+  batch_size: 4
+  grad_accum_steps: 4                        # effective batch = 4 x 4 = 16
+  learning_rate: 5.0e-4                      # peak LR
+  epochs: 500
+  T: 200                                     # diffusion steps (proven to work)
+  beta_start: 1.0e-4
+  beta_end: 0.02
+  noise_schedule: cosine                     # cosine schedule (Improved DDPM)
+  device: cuda                               # falls back to cpu if unavailable
+  grad_clip_norm: 1.0
+  warmup_epochs: 50
+  ema_decay: 0.9999
+  save_every: 100                            # checkpoint every N epochs
+  resume_from: null                          # train from scratch
+
+model:
+  base_channels: 128                         # residual ConvNet width
+  spatial: simple                            # SimpleDenoiser + planes conditioning
+  temporal: mtr                              # ignored when spatial=simple
+  eeg_hrf: true                              # use HRF-convolved EEG features
+
+ablation:                                    # (spatial, temporal) combinations
+  - [attn, cov]        # baseline DDPM
+  - [attn, mtr]
+  - [scg_eeg, cov]
+  - [scg_eeg, mtr]     # proposed (single-modality EEG form)
+  - [scg_fnirs, cov]
+  - [scg_fnirs, mtr]   # unimodal variant
